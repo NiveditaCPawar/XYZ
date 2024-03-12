@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;starPattern.NewStar&apos; to &apos;ReverseFor&apos;&#x0D;&#x0A;- Original project: &apos;testingClass&apos;&#x0D;&#x0A;- Original element: &apos;starPattern.NewStar&apos;&#x0D;&#x0A;- Renamed element: &apos;starPattern.ReverseFor&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;NewStar&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;starPattern{NewStar.java[NewStar" matchStrategy="1" name="ReverseFor" qualified="false" references="true" similarDeclarations="false" stamp="1701764353398" textual="false" version="1.0"/>
+</session>

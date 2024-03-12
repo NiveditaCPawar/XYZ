@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;popups.Goibibo&apos; to &apos;Flipkart&apos;&#x0D;&#x0A;- Original project: &apos;mySelenium&apos;&#x0D;&#x0A;- Original element: &apos;popups.Goibibo&apos;&#x0D;&#x0A;- Renamed element: &apos;popups.Flipkart&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Goibibo&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;popups{Goibibo.java[Goibibo" matchStrategy="1" name="Flipkart" qualified="false" references="true" similarDeclarations="false" stamp="1700501259356" textual="false" version="1.0"/>
+</session>

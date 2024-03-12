@@ -1,0 +1,8 @@
+package interface_use;
+
+public interface Redmi extends Xiaomi 
+{
+ void model();
+ void model(int a);
+ void model(int a, int b);
+}

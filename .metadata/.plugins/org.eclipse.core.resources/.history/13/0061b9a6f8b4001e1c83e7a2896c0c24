@@ -1,0 +1,151 @@
+package testNG1_Test;
+
+import org.testng.annotations.Test;
+
+
+import testNG1_Base.Launching_Closing_URL;
+import testNG1_POM.CoverFoxAddDetails;
+import testNG1_POM.CoverFoxHealthPlan;
+import testNG1_POM.CoverFoxHomePage;
+import testNG1_POM.CoverFoxMemberDetails;
+import testNG1_POM.CoverFoxPlanResultPage;
+import testNG1_Utility.Commom_Use_Methods;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+
+import java.io.IOException;
+import java.util.Properties;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+@Listeners(testNG_Listener.Listener.class)
+public class CF_TC555_ValidateSearchResultPolicyFromTextAndBanners extends Launching_Closing_URL {
+	
+	public static Logger logger;
+	
+	CoverFoxHomePage homepage;
+	CoverFoxAddDetails adddetails;
+	CoverFoxHealthPlan healthPlan;
+	CoverFoxMemberDetails membersDetails;
+	CoverFoxPlanResultPage resultPage;
+	 
+	
+	  @BeforeClass
+	  public void beforeClass() 
+	  {
+		  logger=logger.getLogger("coverfox");
+		  PropertyConfigurator.configure("log4j.properties");
+		  logger.info("launching browser ");
+		  Reporter.log("Browser luanching", true);
+		  luanchingBrowser();
+		
+		  homepage=new CoverFoxHomePage(driver);
+		  adddetails=new CoverFoxAddDetails(driver);
+		  healthPlan=new CoverFoxHealthPlan(driver);
+		  membersDetails=new CoverFoxMemberDetails(driver);
+		  resultPage=new CoverFoxPlanResultPage(driver);
+		 
+	  }
+	@BeforeMethod
+	  public void beforeMethod() throws EncryptedDocumentException, IOException, InterruptedException
+	  {	
+		  
+		  logger.info("Click on gender button ");
+		  Reporter.log("Click on gender button", true);
+		  homepage.clickOnGender();
+		  
+		  logger.info("Click on Next button ");
+		  Reporter.log("Click on Next button", true);
+		  healthPlan.clickOnNextButton();
+		 
+		  logger.info("handeling dropDown ");
+		  Reporter.log("handeling dropDown ", true);
+		  membersDetails.dropDownHandle();
+		  logger.info("Click on next button ");
+		  Reporter.log("Click on next button", true);
+		  membersDetails.clickOnNextButton();
+		  
+		  logger.info("Entering pin code ");
+		  Reporter.log("Entering pin code", true);
+		 adddetails.enterPinCode(Commom_Use_Methods.getDataFromExcel(1, 0));
+		// adddetails.enterPinCode( Commom_Use_Methods.readDataFromProperty("pinCode"));
+		 logger.info("entering mobile number ");
+		  Reporter.log("entering mobile number", true);
+		  adddetails.enterMobileNumber(Commom_Use_Methods.getDataFromExcel(1, 1));
+		 // adddetails.enterMobileNumber(Commom_Use_Methods.readDataFromProperty("num"));
+		  logger.info("Click on continue button ");
+		  Reporter.log("Click on continue button", true);
+		  adddetails.clickOnContinueButton();
+		  
+		  logger.info("Click on filter button ");
+		  Reporter.log("Click on filter button", true);
+		  resultPage.clickOnFiltterButton();
+		  logger.info("Click on checkBox ");
+		  Reporter.log("Click on checkBox", true);
+		  resultPage.chkeckBox();
+		  logger.info("Click on apply button ");
+		  Reporter.log("Click on apply button", true);
+		  resultPage.applybutton();
+		  
+	  }
+	
+	@Test(enabled = false)
+  public void CF_TC555_ValidateSearchResultPolicy() throws InterruptedException, IOException
+  {		
+		
+		Thread.sleep(7000);
+		logger.info("Fetching result from text");
+		Reporter.log("Fetching result from text ", true);
+		 int textResult = resultPage.availablePlanNumOnText();
+		 Thread.sleep(5000);
+		 logger.info("Fetching result from banners");
+		 Reporter.log("Fetching result from banners ", true);
+		 int bannersResult = resultPage.availablePlanNumOnBanners();
+		 Thread.sleep(5000);
+		 Assert.assertEquals(textResult, bannersResult,"Text result not matching with banners result,TC is failed. ");
+		 logger.info("TC1 is pass ");
+		 Reporter.log("TC1 is pass" , true);
+		 Commom_Use_Methods.takescreenshot(driver, "CF_TC555");
+		 Thread.sleep(5000);
+  }
+	@Test
+	public void CF_TC555_ValidateSearchResultPolicyOfAdidtyBirla() throws InterruptedException, IOException {
+		
+		Thread.sleep(7000);
+		logger.info("Fetching result or adity birla from text ");
+		Reporter.log("Fetching result or adity birla from text ", true);
+		int adityaText = resultPage.avalablePlanOnTextOfAdityBirla();
+		
+		Thread.sleep(7000);
+		logger.info("Fetching result of aditya birla from banners ");
+		Reporter.log("Fetching result of aditya birla from banners ", true);
+		Thread.sleep(5000);
+		int adityaBanners = resultPage.availablePlanOfAdityaOnBanners();
+		Thread.sleep(5000);
+		Assert.assertEquals(adityaText, adityaBanners,"Text result not matching with banners result,TC is failed. ");
+		logger.info("TC2 is pass ");
+		Reporter.log("TC2 is pass",true);
+		Reporter.log("Taking screenshots",true);
+		Commom_Use_Methods.takescreenshot(driver, "CF_TC555");
+		 Thread.sleep(1000);
+	}
+	
+
+
+  @AfterMethod
+  public void afterMethod() throws InterruptedException 
+  {
+	  	Reporter.log("Browser closing ",true);
+		 Thread.sleep(5000);
+		 closingBrowser();
+  }
+
+
+
+}

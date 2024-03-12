@@ -1,0 +1,10 @@
+package accessSpace;
+
+public class Space_acc {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

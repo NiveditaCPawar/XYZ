@@ -1,0 +1,15 @@
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class Annotations {
+  @Test
+  public void TC1() {
+	  Reporter.log("hello this is testcase1", true);
+  }
+  @Test
+  public void TC2() {
+	  Reporter.log("hello this is testcase2", true);
+  }
+}
